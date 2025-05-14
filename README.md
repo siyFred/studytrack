@@ -12,3 +12,4 @@
 - [ ] Implementar cache com Redis
 
 ### Frontend
+- [ ] criar uma tela com funcionalidades basicas
