@@ -4,7 +4,7 @@
 
 ### Backend
 
-- [ ] Criar setup inicial
+- [x] Criar setup inicial
 - [ ] Criar conexão com banco de dados
 - [ ] Criar modelos do banco de dados
 - [ ] Criar rotas (crud)
