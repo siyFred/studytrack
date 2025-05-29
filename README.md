@@ -5,11 +5,13 @@
 ### Backend
 
 - [x] Criar setup inicial
-- [ ] Criar conexão com banco de dados
+- [x] Criar conexão com banco de dados
 - [ ] Criar modelos do banco de dados
 - [ ] Criar rotas (crud)
 - [ ] Adicionar autentição nas rotas
 - [ ] Implementar cache com Redis
 
 ### Frontend
-- [ ] criar uma tela com funcionalidades basicas
+- [ ] Criar tela Home
+- [ ] Criar tela Login
+- [ ] Criar tela Signin
