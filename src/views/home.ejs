@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyTrack</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">StudyTrack</span>
+      </div>
+      <button class="menu-button" id="menu-button">☰</button>
+      <nav class="nav" id="nav">
+        <a href="#">Recursos</a>
+        <a href="#">Introdução</a>
+        <a href="#">Saiba mais</a>
+        <a href="#" class="btn-nav">Entrar</a>
+        <a href="#" class="btn-nav btn-outline">Cadastrar</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1><span class="highlight">Melhore</span> seus estudos</h1>
+      <p class="hero-subtext">
+        A plataforma mais simples capaz de aumentar sua produtividade e organização nos estudos.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary">Introdução</button>
+        <button class="btn-secondary">Saiba mais</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2>Principais recursos</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Rápido</h3>
+          <p>Alta velocidade e performance</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Segurança</h3>
+          <p>Aplicação segura e confiável com criptografia</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Sincronização</h3>
+          <p>Sincronização entre dispositivos em tempo real</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 StudyTrack. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById('menu-button');
+    const nav = document.getElementById('nav');
+
+    menuButton.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>

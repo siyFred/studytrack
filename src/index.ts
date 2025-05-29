@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
-import prisma from './lib/prisma';
+import prisma from './db/prisma';
 
 
 dotenv.config();
@@ -12,10 +12,10 @@ const port = process.env.PORT;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// CSS, img em ../public
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('home');
 });
 
 app.listen(port, () => {

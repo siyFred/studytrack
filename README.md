@@ -12,6 +12,7 @@
 - [ ] Implementar cache com Redis
 
 ### Frontend
-- [ ] Criar tela Home
+- [x] Criar tela Home
 - [ ] Criar tela Login
 - [ ] Criar tela Signin
+- [ ] Criar tela de rercuperação de senha 
