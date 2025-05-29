@@ -32,6 +32,7 @@ model Topic {
 
 model Step {
   id String @id @default(cuid())
+  title String
   content String
   order Int
   topic Topic @relation(fields: [topicId], references: [id])
