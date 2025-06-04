@@ -9,6 +9,6 @@ userRouter.post('/login', login);
 
 userRouter.use(auth);
 
-userRouter.get('/users', getUsers);
+//userRouter.get('/api/users', getUsers);
 
 export default userRouter;

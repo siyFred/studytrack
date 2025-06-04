@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar Tópico | Admin | StudyTrack</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .remove-step-btn.btn-outline:hover {
+      background: #7c3aed;
+      color: #fff;
+      border-color: #7c3aed;
+    }
+  </style>
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;">
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">StudyTrack</span>
+      </div>
+      <button class="menu-button" id="menu-button">☰</button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a>
+        <a href="/admin/logout" class="btn-nav btn-outline">Sair do Admin</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero" style="flex:1;">
+    <div class="container" style="max-width: 600px; margin: 0 auto;">
+      <h1 style="text-align:center;">Criar Novo Tópico</h1>
+      <form action="/admin/topics" method="POST" id="topicForm" style="margin-top: 40px;">
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="error-message" style="color:#f87171;margin-bottom:15px;text-align:center;"> <%= error %> </div>
+        <% } %>
+        <div style="margin-bottom: 20px;">
+          <label for="title">Título do Tópico</label>
+          <input type="text" id="title" name="title" required style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;">
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label for="description">Descrição</label>
+          <textarea id="description" name="description" required style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;resize: vertical;"></textarea>
+        </div>
+        <h2 style="color:#a78bfa;">Passos do Tópico</h2>
+        <div id="stepsContainer"></div>
+        <button type="button" onclick="addStep()" class="btn-secondary" style="margin:15px 0;width:100%;">Adicionar Passo</button>
+        <button type="submit" class="btn-primary" style="width:100%;">Criar Tópico</button>
+      </form>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 StudyTrack. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    let stepCount = 0;
+    function addStep() {
+      stepCount++;
+      const stepsContainer = document.getElementById('stepsContainer');
+      const stepDiv = document.createElement('div');
+      stepDiv.className = 'step-block';
+      stepDiv.style = 'background:#232946;padding:15px;border-radius:8px;margin-bottom:15px;';
+      stepDiv.innerHTML = `
+        <label class="step-label">Passo ${stepCount} - Título</label>
+        <input type="text" name="steps[${stepCount}][title]" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;border:1px solid #4b5563;background:#111827;color:white;">
+        <label>Conteúdo</label>
+        <textarea name="steps[${stepCount}][content]" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px;border:1px solid #4b5563;background:#111827;color:white;resize: vertical;"></textarea>
+        <div style="display:flex;justify-content:center;">
+          <button type="button" class="btn-secondary remove-step-btn" style="margin-top:5px;">Remover</button>
+        </div>
+      `;
+      stepsContainer.appendChild(stepDiv);
+      updateStepLabels();
+      stepDiv.querySelector('.remove-step-btn').onclick = function() {
+        stepDiv.remove();
+        updateStepLabels();
+      };
+    }
+    function updateStepLabels() {
+      const stepBlocks = document.querySelectorAll('.step-block');
+      stepBlocks.forEach((block, idx) => {
+        const label = block.querySelector('.step-label');
+        if (label) label.textContent = `Passo ${idx + 1} - Título`;
+      });
+    }
+    // Adiciona um passo inicial por padrão
+    window.onload = addStep;
+    const menuButton = document.getElementById('menu-button');
+    const nav = document.getElementById('nav');
+    menuButton.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>

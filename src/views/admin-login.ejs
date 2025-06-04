@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login | StudyTrack</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;">
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">StudyTrack</span>
+      </div>
+      <button class="menu-button" id="menu-button">☰</button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero" style="flex:1;">
+    <div class="container" style="max-width: 400px; margin: 0 auto;">
+      <h1 style="text-align:center;">Acesso Admin</h1>
+      <form action="/admin/login" method="POST" style="margin-top: 40px;">
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="error-message" style="color:#f87171;margin-bottom:15px;text-align:center;"> <%= error %> </div>
+        <% } %>
+        <div style="margin-bottom: 20px;">
+          <label for="adminPassword">Senha de administrador</label>
+          <input type="password" id="adminPassword" name="adminPassword" required minlength="5" style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Entrar</button>
+      </form>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 StudyTrack. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const menuButton = document.getElementById('menu-button');
+    const nav = document.getElementById('nav');
+    menuButton.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>

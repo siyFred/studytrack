@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | StudyTrack</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;">
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">StudyTrack</span>
+      </div>
+      <button class="menu-button" id="menu-button">☰</button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a>
+        <a href="#">Recursos</a>
+        <a href="#">Introdução</a>
+        <% if (typeof username !== 'undefined' && username) { %>
+          <span style="color:#a78bfa;font-weight:bold;align-self:center;">Olá, <%= username %>!</span>
+          <a href="/logout" class="btn-nav btn-outline">Sair</a>
+        <% } else { %>
+          <a href="/register" class="btn-nav btn-outline">Cadastrar</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" style="flex:1;">
+    <div class="container" style="max-width: 400px; margin: 0 auto;">
+      <h1 style="text-align:center;">Entrar</h1>
+      <form action="/api/login" method="POST" class="login-form" style="margin-top: 40px;" onsubmit="return validateLoginForm()">
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="error-message" style="color:#f87171;margin-bottom:15px;text-align:center;"> <%= error %> </div>
+        <% } %>
+        <div style="margin-bottom: 20px;">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;">
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" required minlength="8" style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Entrar</button>
+      </form>
+      <p style="text-align:center;margin-top:20px;">Não tem uma conta? <a href="/register" style="color:#a78bfa;">Cadastre-se</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 StudyTrack. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById('menu-button');
+    const nav = document.getElementById('nav');
+    menuButton.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+
+    function validateLoginForm() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      let error = '';
+      if (!/^\S+@\S+\.\S+$/.test(email)) error += 'Email inválido. ';
+      if (password.length < 8) error += 'Senha deve ter pelo menos 8 caracteres.';
+      if (error) {
+        alert(error);
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

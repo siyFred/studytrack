@@ -18,8 +18,14 @@
         <a href="#">Recursos</a>
         <a href="#">Introdução</a>
         <a href="#">Saiba mais</a>
-        <a href="#" class="btn-nav">Entrar</a>
-        <a href="#" class="btn-nav btn-outline">Cadastrar</a>
+        <% if (typeof username !== 'undefined' && username) { %>
+          <a href="/dashboard" class="btn-nav">Dashboard</a>
+          <span style="color:#a78bfa;font-weight:bold;align-self:center;">Olá, <%= username %>!</span>
+          <a href="/logout" class="btn-nav btn-outline">Sair</a>
+        <% } else { %>
+          <a href="/login" class="btn-nav">Entrar</a>
+          <a href="/register" class="btn-nav btn-outline">Cadastrar</a>
+        <% } %>
       </nav>
     </div>
   </header>

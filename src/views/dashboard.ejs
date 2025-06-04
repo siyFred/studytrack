@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | StudyTrack</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;">
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">StudyTrack</span>
+      </div>
+      <button class="menu-button" id="menu-button">☰</button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a>
+        <a href="/dashboard" class="btn-nav">Dashboard</a>
+        <% if (typeof username !== 'undefined' && username) { %>
+          <span style="color:#a78bfa;font-weight:bold;align-self:center;">Olá, <%= username %>!</span>
+          <a href="/logout" class="btn-nav btn-outline">Sair</a>
+        <% } else { %>
+          <a href="/login" class="btn-nav">Entrar</a>
+          <a href="/register" class="btn-nav btn-outline">Cadastrar</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" style="flex:1;">
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+      <h1 style="text-align:center;">Meu Painel de Estudos</h1>
+      <p style="text-align:center; color:#d1d5db; margin-bottom:40px;">Acompanhe seu progresso, tópicos e passos de estudo.</p>
+      <div class="dashboard-content" style="background:#1f2937;padding:30px;border-radius:10px;">
+        <h2 style="color:#a78bfa;">Tópicos em andamento</h2>
+        <ul style="margin:20px 0 40px 0;list-style:none;padding:0;">
+          <% if (userTopics && userTopics.length > 0) { %>
+            <% userTopics.forEach(ut => { %>
+              <li style="background:#374151;padding:15px 20px;border-radius:8px;margin-bottom:15px;">
+                <strong><a href="/topic/<%= ut.topic.id %>" style="color:#a78bfa;text-decoration:underline;"> <%= ut.topic.title %> </a></strong><br>
+                <span style="color:#a78bfa;">
+                  Progresso: 
+                  <% const totalSteps = ut.topic.steps.length; %>
+                  <% const completedSteps = progress.filter(p => p.stepId && p.userId === user.id && p.completed && ut.topic.steps.some(s => s.id === p.stepId)).length; %>
+                  <%= completedSteps %>/<%= totalSteps %> passos concluídos
+                </span>
+              </li>
+            <% }) %>
+          <% } else { %>
+            <li style="color:#d1d5db;">Nenhum tópico em andamento.</li>
+          <% } %>
+        </ul>
+        <h2 style="color:#a78bfa;">Tópicos disponíveis para seguir</h2>
+        <ul style="margin:20px 0 40px 0;list-style:none;padding:0;">
+          <% if (availableTopics && availableTopics.length > 0) { %>
+            <% availableTopics.forEach(topic => { %>
+              <li style="background:#232946;padding:15px 20px;border-radius:8px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <strong><%= topic.title %></strong><br>
+                  <span style="color:#d1d5db;"> <%= topic.description %> </span>
+                </div>
+                <form action="/dashboard/follow" method="POST" style="margin:0;">
+                  <input type="hidden" name="topicId" value="<%= topic.id %>">
+                  <button type="submit" class="btn-primary">Seguir</button>
+                </form>
+              </li>
+            <% }) %>
+          <% } else { %>
+            <li style="color:#d1d5db;">Nenhum tópico disponível para seguir.</li>
+          <% } %>
+        </ul>
+        <!-- Aqui pode entrar um botão para seguir novos tópicos, se desejar -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 StudyTrack. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById('menu-button');
+    const nav = document.getElementById('nav');
+    menuButton.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
