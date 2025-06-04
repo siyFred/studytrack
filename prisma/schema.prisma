@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -16,6 +15,7 @@ datasource db {
 
 model User {
   id String @id @default(cuid())
+  username String @unique
   email String @unique
   password String
   userTopics UserTopic[]
@@ -60,4 +60,3 @@ model Progress {
 
   @@unique([userId, stepId])
 }
-
