@@ -6,7 +6,7 @@
   <title>Cadastro | StudyTrack</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body style="min-height:100vh;display:flex;flex-direction:column;">
+<body>
   <header class="header">
     <div class="container header-content">
       <div class="logo">
@@ -28,28 +28,28 @@
     </div>
   </header>
 
-  <section class="hero" style="flex:1;">
-    <div class="container" style="max-width: 400px; margin: 0 auto;">
-      <h1 style="text-align:center;">Cadastrar</h1>
-      <form action="/api/register" method="POST" class="register-form" style="margin-top: 40px;" onsubmit="return validateRegisterForm()">
+  <section class="hero flex-1">
+    <div class="container container-400">
+      <h1 class="text-center">Cadastrar</h1>
+      <form action="/api/register" method="POST" class="register-form mt-40" onsubmit="return validateRegisterForm()">
         <% if (typeof error !== 'undefined' && error) { %>
-          <div class="error-message" style="color:#f87171;margin-bottom:15px;text-align:center;"> <%= error %> </div>
+          <div class="error-message text-error mb-15 text-center"> <%= error %> </div>
         <% } %>
-        <div style="margin-bottom: 20px;">
+        <div class="mb-20">
           <label for="username">Usuário</label>
-          <input type="text" id="username" name="username" required minlength="3" style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;">
+          <input type="text" id="username" name="username" required minlength="3" class="w-100 p-10 mt-5 rounded-6 b-1 bg-input">
         </div>
-        <div style="margin-bottom: 20px;">
+        <div class="mb-20">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;">
+          <input type="email" id="email" name="email" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" class="w-100 p-10 mt-5 rounded-6 b-1 bg-input">
         </div>
-        <div style="margin-bottom: 20px;">
+        <div class="mb-20">
           <label for="password">Senha</label>
-          <input type="password" id="password" name="password" required minlength="8" style="width:100%;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #4b5563;background:#1f2937;color:white;">
+          <input type="password" id="password" name="password" required minlength="8" class="w-100 p-10 mt-5 rounded-6 b-1 bg-input">
         </div>
-        <button type="submit" class="btn-primary" style="width:100%;">Cadastrar</button>
+        <button type="submit" class="btn-primary w-100">Cadastrar</button>
       </form>
-      <p style="text-align:center;margin-top:20px;">Já tem uma conta? <a href="/login" style="color:#a78bfa;">Entrar</a></p>
+      <p class="text-center mt-20" style="margin-top: 15px">Já tem uma conta? <a href="/login" class="text-purple">Entrar</a></p>
     </div>
   </section>
 

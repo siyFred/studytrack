@@ -8,6 +8,7 @@ import viewRouter from './routes/viewRoute';
 import userRouter from './routes/userRoute';
 import adminRouter from './routes/adminRoute';
 import { userSession } from './middlewares/userSession';
+import { mailerMiddleware } from './middlewares/mailer';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,10 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(userSession);
+app.use(mailerMiddleware);
 
 app.use('/', viewRouter);
-app.use('/api', userRouter);
 app.use(adminRouter);
+app.use('/api', userRouter);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

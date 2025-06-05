@@ -9,6 +9,9 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Container */
@@ -16,6 +19,16 @@ body {
   width: 90%;
   max-width: 1200px;
   margin: auto;
+}
+
+.container-400 {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.container-700 {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 /* Header */
@@ -99,6 +112,10 @@ body {
 .hero {
   text-align: center;
   padding: 100px 20px;
+}
+
+.hero.flex-1 {
+  flex: 1;
 }
 
 .hero h1 {
@@ -189,12 +206,173 @@ body {
   color: #d1d5db;
 }
 
+/* Passos do tópico */
+.step-item {
+  background: #232946;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.step-content {
+  width: 100%;
+}
+
+.step-description {
+  color: #d1d5db;
+  margin-top: 8px;
+  white-space: pre-line;
+}
+
+.step-form {
+  margin: 18px 0 0 0;
+}
+
+.btn-step {
+  min-width: 120px;
+  width: 100%;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-step-completed {
+  background-color: #34d399;
+}
+
+.btn-step-pending {
+  background-color: #a78bfa;
+}
+
+.btn-step:active {
+  opacity: 0.85;
+}
+
 /* Footer */
 .footer {
   padding: 30px 0;
   border-top: 1px solid #1f2937;
   text-align: center;
   color: #9ca3af;
+}
+
+/* Utilitários */
+.text-center {
+  text-align: center;
+}
+
+.text-purple {
+  color: #a78bfa;
+}
+
+.text-gray {
+  color: #d1d5db;
+}
+
+.text-error {
+  color: #f87171;
+}
+
+.text-success {
+  color: #34d399;
+}
+
+.text-small {
+  font-size: 1.1rem;
+}
+
+.bg-dark {
+  background: #1f2937;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-32 {
+  margin-top: 32px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-220 {
+  width: 220px;
+}
+
+.rounded-6 {
+  border-radius: 6px;
+}
+
+.rounded-8 {
+  border-radius: 8px;
+}
+
+.rounded-10 {
+  border-radius: 10px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.p-8 {
+  padding: 8px;
+}
+
+.b-1 {
+  border: 1px solid #4b5563;
+}
+
+.bg-input {
+  background: #1f2937;
+  color: white;
+}
+
+.bg-step {
+  background: #232946;
+}
+
+.list-inside-decimal {
+  list-style: decimal inside;
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 /* Responsividade */

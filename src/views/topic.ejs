@@ -6,7 +6,7 @@
   <title><%= topic.title %> | StudyTrack</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body style="min-height:100vh;display:flex;flex-direction:column;">
+<body>
   <header class="header">
     <div class="container header-content">
       <div class="logo">
@@ -21,29 +21,41 @@
       </nav>
     </div>
   </header>
-  <section class="hero" style="flex:1;">
-    <div class="container" style="max-width: 700px; margin: 0 auto;">
-      <h1 style="text-align:center; color:#a78bfa;"><%= topic.title %></h1>
-      <p style="text-align:center; color:#d1d5db; margin-bottom:30px; font-size:1.1rem;">
+  <section class="hero flex-1">
+    <div class="container container-700">
+      <h1 class="text-center text-purple"><%= topic.title %></h1>
+      <p class="text-center text-gray mb-30 text-small">
         <%= topic.description %>
       </p>
-      <div style="background:#1f2937;padding:30px;border-radius:10px;">
-        <h2 style="color:#a78bfa;">Passos</h2>
-        <ol style="margin:20px 0 0 0;list-style:decimal inside;padding:0;">
+      <div class="bg-dark">
+        <h2 class="text-purple">Passos</h2>
+        <ol class="mt-20 list-inside-decimal p-0">
           <% if (topic.steps && topic.steps.length > 0) { %>
             <% topic.steps.forEach(step => { %>
-              <li style="background:#232946;padding:15px 20px;border-radius:8px;margin-bottom:15px;">
-                <strong><%= step.title %></strong>
-                <div style="color:#d1d5db;margin-top:8px;white-space:pre-line;">
-                  <%= step.content %>
+              <% const userProgress = (progress || []).find(p => p.stepId === step.id && p.userId === user.id); %>
+              <li class="step-item">
+                <div class="step-content">
+                  <strong><%= step.title %></strong>
+                  <div class="step-description">
+                    <%= step.content %>
+                  </div>
+                  <form action="/topic/<%= topic.id %>/step/<%= step.id %>/toggle" method="POST" class="step-form">
+                    <% const btnClass = (userProgress && userProgress.completed) ? 'btn-step btn-step-completed' : 'btn-step btn-step-pending'; %>
+                    <button type="submit" class="<%= btnClass %>">
+                      <%= userProgress && userProgress.completed ? 'Concluído' : 'Marcar como concluído' %>
+                    </button>
+                  </form>
                 </div>
               </li>
             <% }) %>
           <% } else { %>
-            <li style="color:#d1d5db;">Nenhum passo cadastrado para este tópico.</li>
+            <li class="text-gray">Nenhum passo cadastrado para este tópico.</li>
           <% } %>
         </ol>
       </div>
+      <form action="/topic/<%= topic.id %>/unfollow" method="POST" class="mt-32 text-align-center">
+        <button type="submit" class="btn-secondary w-220">Parar de seguir este tópico</button>
+      </form>
     </div>
   </section>
   <footer class="footer">

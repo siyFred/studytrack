@@ -6,13 +6,13 @@
 
 - [x] Criar setup inicial
 - [x] Criar conexão com banco de dados
-- [ ] Criar modelos do banco de dados
-- [ ] Criar rotas (crud)
-- [ ] Adicionar autentição nas rotas
-- [ ] Implementar cache com Redis
+- [x] Criar modelos do banco de dados
+- [x] Criar rotas (crud)
+- [x] Adicionar autenticação nas rotas
+- [x] Implementar cache com Cookie parser para sessão de usuário
 
 ### Frontend
 - [x] Criar tela Home
-- [ ] Criar tela Login
-- [ ] Criar tela Signin
-- [ ] Criar tela de rercuperação de senha 
+- [x] Criar tela Login
+- [x] Criar tela Register
+- [x] Criar tela de recuperação de senha

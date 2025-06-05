@@ -7,11 +7,11 @@ export const createTopicWithSteps = async (req: Request, res: Response) => {
     if (!title || !description || !steps) {
       return res.render('admin-topic', { error: 'Preencha todos os campos.' });
     }
-    // Cria o tópico
+    
     const topic = await prisma.topic.create({
       data: { title, description }
     });
-    // Cria os passos
+    
     const stepsArr = Array.isArray(steps) ? steps : Object.values(steps);
     for (let idx = 0; idx < stepsArr.length; idx++) {
       const step = stepsArr[idx];

@@ -4,7 +4,6 @@ import { createTopicWithSteps } from '../controller/adminController';
 
 const adminRouter = Router();
 
-// Middleware simples para checar se admin está autenticado
 function adminAuth(req: Request, res: Response, next: Function) {
   if (req.cookies && req.cookies.admin === 'true') return next();
   return res.redirect('/admin/login');

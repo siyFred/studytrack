@@ -15,6 +15,15 @@ viewRouter.get('/register', (req, res) => {
   res.render('register');
 });
 
+viewRouter.get('/forgot-password', (req, res) => {
+  res.render('forgot-password');
+});
+
+viewRouter.get('/reset-password', (req, res) => {
+  const { email } = req.query;
+  res.render('reset-password', { email, error: null, message: null });
+});
+
 function dashboardAuth(req: Request, res: Response, next: NextFunction) {
   if (!res.locals.username) {
     return res.redirect('/login');
@@ -23,11 +32,10 @@ function dashboardAuth(req: Request, res: Response, next: NextFunction) {
 }
 
 viewRouter.get('/dashboard', dashboardAuth, async (req: Request, res: Response) => {
-  // Busca o usuário pelo username salvo em res.locals
+  
   const user = await prisma.user.findUnique({ where: { username: res.locals.username } });
   if (!user) return res.redirect('/login');
 
-  // Busca os tópicos que o usuário já segue
   const userTopics = await prisma.userTopic.findMany({
     where: { userId: user.id },
     include: {
@@ -40,12 +48,10 @@ viewRouter.get('/dashboard', dashboardAuth, async (req: Request, res: Response) 
     }
   });
 
-  // Busca progresso do usuário
   const progress = await prisma.progress.findMany({
     where: { userId: user.id },
   });
 
-  // Busca tópicos disponíveis para seguir (que o usuário ainda não segue)
   const followedTopicIds = userTopics.map(ut => ut.topicId);
   const availableTopics = await prisma.topic.findMany({
     where: {
@@ -58,10 +64,10 @@ viewRouter.get('/dashboard', dashboardAuth, async (req: Request, res: Response) 
 
 viewRouter.post('/dashboard/follow', async (req, res) => {
   const { topicId } = req.body;
-  // Busca o usuário logado
+
   const user = await prisma.user.findUnique({ where: { username: res.locals.username } });
   if (!user) return res.redirect('/login');
-  // Cria relação UserTopic se não existir
+
   await prisma.userTopic.upsert({
     where: {
       userId_topicId: {
@@ -78,15 +84,42 @@ viewRouter.post('/dashboard/follow', async (req, res) => {
   res.redirect('/dashboard');
 });
 
-// Visualização de tópico e seus passos para usuário logado
+viewRouter.post('/topic/:id/unfollow', dashboardAuth, async (req: Request, res: Response) => {
+  const topicId = req.params.id;
+  const user = await prisma.user.findUnique({ where: { username: res.locals.username } });
+  if (!user) return res.redirect('/login');
+  await prisma.userTopic.deleteMany({ where: { userId: user.id, topicId } });
+  res.redirect('/dashboard');
+});
+
 viewRouter.get('/topic/:id', dashboardAuth, async (req: Request, res: Response) => {
   const topicId = req.params.id;
+  const user = await prisma.user.findUnique({ where: { username: res.locals.username } });
+  if (!user) return res.redirect('/login');
   const topic = await prisma.topic.findUnique({
     where: { id: topicId },
     include: { steps: { orderBy: { order: 'asc' } } }
   });
   if (!topic) return res.status(404).render('dashboard', { error: 'Tópico não encontrado.' });
-  res.render('topic', { topic });
+  
+  const progress = await prisma.progress.findMany({
+    where: { userId: user.id, stepId: { in: topic.steps.map(s => s.id) } }
+  });
+  res.render('topic', { topic, user, progress });
+});
+
+viewRouter.post('/topic/:id/step/:stepId/toggle', dashboardAuth, async (req: Request, res: Response) => {
+  const topicId = req.params.id;
+  const stepId = req.params.stepId;
+  const user = await prisma.user.findUnique({ where: { username: res.locals.username } });
+  if (!user) return res.redirect('/login');
+  const progress = await prisma.progress.findUnique({ where: { userId_stepId: { userId: user.id, stepId } } });
+  if (progress) {
+    await prisma.progress.update({ where: { id: progress.id }, data: { completed: !progress.completed } });
+  } else {
+    await prisma.progress.create({ data: { userId: user.id, stepId, completed: true } });
+  }
+  res.redirect(`/topic/${topicId}`);
 });
 
 viewRouter.get('/logout', (req, res) => {

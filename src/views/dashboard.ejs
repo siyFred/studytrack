@@ -55,22 +55,20 @@
         <ul style="margin:20px 0 40px 0;list-style:none;padding:0;">
           <% if (availableTopics && availableTopics.length > 0) { %>
             <% availableTopics.forEach(topic => { %>
-              <li style="background:#232946;padding:15px 20px;border-radius:8px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;">
-                <div>
-                  <strong><%= topic.title %></strong><br>
-                  <span style="color:#d1d5db;"> <%= topic.description %> </span>
+              <li style="background:#232946;padding:15px 20px;border-radius:8px;margin-bottom:15px;">
+                <div style="display:flex;flex-direction:column;align-items:flex-start;">
+                  <strong><%= topic.title %></strong>
+                  <form action="/dashboard/follow" method="POST" style="margin:15px 0 0 0;width:100%;">
+                    <input type="hidden" name="topicId" value="<%= topic.id %>">
+                    <button type="submit" class="btn-primary" style="width:100%;">Seguir</button>
+                  </form>
                 </div>
-                <form action="/dashboard/follow" method="POST" style="margin:0;">
-                  <input type="hidden" name="topicId" value="<%= topic.id %>">
-                  <button type="submit" class="btn-primary">Seguir</button>
-                </form>
               </li>
             <% }) %>
           <% } else { %>
             <li style="color:#d1d5db;">Nenhum tópico disponível para seguir.</li>
           <% } %>
         </ul>
-        <!-- Aqui pode entrar um botão para seguir novos tópicos, se desejar -->
       </div>
     </div>
   </section>
