@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introdução</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span class="logo-text">StudyTrack</span>
+      </div>
+      <button class="menu-button" id="menu-button">☰</button>
+      <nav class="nav" id="nav">
+        <a href="/recursos">Recursos</a>
+        <a href="/introducao">Introdução</a>
+        <a href="/saibamais">Saiba mais</a>
+        <% if (typeof username !== 'undefined' && username) { %>
+          <a href="/dashboard" class="btn-nav">Dashboard</a>
+          <span style="color:#a78bfa;font-weight:bold;align-self:center;">Olá, <%= username %>!</span>
+          <a href="/logout" class="btn-nav btn-outline">Sair</a>
+        <% } else { %>
+          <a href="/login" class="btn-nav">Entrar</a>
+          <a href="/register" class="btn-nav btn-outline">Cadastrar</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+    <section style="max-width: 800px; text-align: center;">
+      <h1>Bem-vindo ao StudyTrack 📖</h1>
+      <p>O StudyTrack é uma plataforma inovadora projetada para ajudar você a organizar seus estudos de forma eficiente e produtiva. Aqui, você encontrará a melhor ferramenta que facilita sua jornada acadêmica.</p>
+      <p>Explore nossos recursos, compartilhe suas experiencias e aproveite ao máximo suas ideias. Seu sucesso é o nosso sucesso!</p>      <div style="margin-top: 32px;">
+        <a href="/login" class="btn btn-primary">Comece Agora</a>
+      </div>
+    </section>    
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 StudyTrack. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById('menu-button');
+    const nav = document.getElementById('nav');
+    menuButton.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
