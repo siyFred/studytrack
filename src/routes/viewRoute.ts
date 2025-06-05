@@ -7,6 +7,18 @@ viewRouter.get('/', (req, res) => {
   res.render('home');
 });
 
+viewRouter.get('/introduction', (req, res) => {
+  res.render('introduction');
+});
+
+viewRouter.get('/features', (req, res) => {
+  res.render('features');
+});
+
+viewRouter.get('/aboutus', (req, res) => {
+  res.render('aboutus');
+});
+
 viewRouter.get('/login', (req, res) => {
   res.render('login');
 });

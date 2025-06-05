@@ -148,6 +148,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -162,6 +163,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: border-color 0.3s;
+  text-decoration: none;
 }
 
 .btn-secondary:hover {

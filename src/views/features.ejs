@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Saiba Mais</title>
+  <title>Recursos</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -15,9 +15,9 @@
       </div>
       <button class="menu-button" id="menu-button">☰</button>
       <nav class="nav" id="nav">
-        <a href="/recursos">Recursos</a>
-        <a href="/introducao">Introdução</a>
-        <a href="/saibamais">Saiba mais</a>
+        <a href="/">Início</a>
+        <a href="/introduction">Introdução</a>
+        <a href="/aboutus">Saiba mais</a>
         <% if (typeof username !== 'undefined' && username) { %>
           <a href="/dashboard" class="btn-nav">Dashboard</a>
           <span style="color:#a78bfa;font-weight:bold;align-self:center;">Olá, <%= username %>!</span>
@@ -32,32 +32,37 @@
 
   <main class="container" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
     <section style="max-width: 900px; text-align: center; margin: 0 auto;">
-      <h1>Saiba mais sobre o StudyTrack 🔎</h1>
-      <p style="color:#d1d5db; margin-bottom: 32px;">Descubra como o StudyTrack pode transformar sua rotina de estudos e potencializar seus resultados!</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin-bottom: 32px;">
+      <h1>Recursos do StudyTrack 🚀</h1>
+      <p style="color:#d1d5db; margin-bottom: 32px;">Conheça as principais funcionalidades que tornam sua experiência de estudo mais eficiente e organizada.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
         <div style="background:#232946; border-radius:10px; padding:24px; min-width:220px; max-width:260px; flex:1;">
-          <div style="font-size:2.5rem; margin-bottom:12px;">🎯</div>
-          <h3 style="color:#a78bfa;">Defina Metas</h3>
-          <p style="color:#d1d5db;">Estabeleça objetivos claros e acompanhe seu progresso diariamente.</p>
+          <div style="font-size:2.5rem; margin-bottom:12px;">📚</div>
+          <h3 style="color:#a78bfa;">Organização de Tópicos</h3>
+          <p style="color:#d1d5db;">Acompanhe tópicos de estudo personalizados.</p>
         </div>
         <div style="background:#232946; border-radius:10px; padding:24px; min-width:220px; max-width:260px; flex:1;">
-          <div style="font-size:2.5rem; margin-bottom:12px;">🗂️</div>
-          <h3 style="color:#a78bfa;">Organização Visual</h3>
-          <p style="color:#d1d5db;">Visualize seus tópicos, passos e conquistas de forma intuitiva.</p>
+          <div style="font-size:2.5rem; margin-bottom:12px;">📈</div>
+          <h3 style="color:#a78bfa;">Acompanhamento de Progresso</h3>
+          <p style="color:#d1d5db;">Visualize seu avanço em cada etapa dos estudos.</p>
         </div>
         <div style="background:#232946; border-radius:10px; padding:24px; min-width:220px; max-width:260px; flex:1;">
-          <div style="font-size:2.5rem; margin-bottom:12px;">🤩</div>
-          <h3 style="color:#a78bfa;">Motivação Constante</h3>
-          <p style="color:#d1d5db;">Receba dicas, lembretes e acompanhe sua evolução para não desanimar.</p>
+          <div style="font-size:2.5rem; margin-bottom:12px;">🔔</div>
+          <h3 style="color:#a78bfa;">Notificações Inteligentes</h3>
+          <p style="color:#d1d5db;">Receba lembretes para manter sua rotina de estudos em dia.</p>
         </div>
-        <div style="background:#232946; border-radius:10px; padding:20px; min-width:220px; max-width:260px; flex:1;">
-          <div style="font-size:2.5rem; margin-bottom:12px;">🌐</div>
-          <h3 style="color:#a78bfa;">Acesso em Qualquer Lugar</h3>
-          <p style="color:#d1d5db;">Estude e acompanhe seu progresso de qualquer dispositivo.</p>
+        <div style="background:#232946; border-radius:10px; padding:24px; min-width:220px; max-width:260px; flex:1;">
+          <div style="font-size:2.5rem; margin-bottom:12px;">🔒</div>
+          <h3 style="color:#a78bfa;">Segurança</h3>
+          <p style="color:#d1d5db;">Seus dados protegidos com criptografia e privacidade.</p>
+        </div>
+        <div style="background:#232946; border-radius:10px; padding:24px; min-width:220px; max-width:260px; flex:1;">
+          <div style="font-size:2.5rem; margin-bottom:12px;">🤝</div>
+          <h3 style="color:#a78bfa;">Assistencia</h3>
+          <p style="color:#d1d5db;">Consulte nossos moderadores, Esclareça duvidas.</p>
         </div>
       </div>
       <div style="margin-top: 64px;">
-        <a href="/register" class="btn btn-primary">Crie sua conta gratuitamente</a>
+        <a href="/register" class="btn btn-primary">Quero experimentar!</a>
       </div>
     </section>
   </main>

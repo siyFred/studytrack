@@ -15,9 +15,9 @@
       </div>
       <button class="menu-button" id="menu-button">☰</button>
       <nav class="nav" id="nav">
-        <a href="#">Recursos</a>
-        <a href="#">Introdução</a>
-        <a href="#">Saiba mais</a>
+        <a href="/features">Recursos</a>
+        <a href="/introduction">Introdução</a>
+        <a href="/aboutus">Saiba mais</a>
         <% if (typeof username !== 'undefined' && username) { %>
           <a href="/dashboard" class="btn-nav">Dashboard</a>
           <span style="color:#a78bfa;font-weight:bold;align-self:center;">Olá, <%= username %>!</span>
@@ -37,8 +37,8 @@
         A plataforma mais simples capaz de aumentar sua produtividade e organização nos estudos.
       </p>
       <div class="hero-buttons">
-        <button class="btn-primary">Introdução</button>
-        <button class="btn-secondary">Saiba mais</button>
+        <a href="/introduction" class="btn-primary">Introdução</a>
+        <a href="/aboutus" class="btn-secondary">Saiba mais</a>
       </div>
     </div>
   </section>
