@@ -16,3 +16,5 @@
 - [x] Criar tela Login
 - [x] Criar tela Register
 - [x] Criar tela de recuperação de senha
+- [x] Criar tela Dashboard
+- [x] Criar tela para Topics
